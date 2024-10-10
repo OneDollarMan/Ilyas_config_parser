@@ -32,7 +32,7 @@ def parse_args(input_args=None):
         "--config_dir",
         type=str,
         default=None,
-        required=False,
+        required=True,
         help="Path to dir with configs",
     )
 
@@ -58,6 +58,9 @@ def process_txt_files_in_directory(settings_file, directory, result_directory):
 def main(args):
     settings_file = 'settings.txt'
     result_directory = 'result'
+    if not os.path.exists(args.config_dir):
+        print('No config folder found')
+        return
     if not os.path.exists(result_directory):
         os.makedirs(result_directory)
 
